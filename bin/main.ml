@@ -1,4 +1,4 @@
-let is_number str = 
+let is_number str =
     let len = String.length str in 
     let rec check_digits i = 
         if i = len then true
@@ -19,18 +19,33 @@ let is_operator str =
             | _ -> false
 
 
-let rec read_input () = 
+let rec read_reverse_polish_notation stack = 
     let s = read_line () in 
-    match s with
-        | "" -> ()
-        | _ ->
-                if is_number s then 
-                    let num = int_of_string s in
-                    Printf.printf "Number: %d\n" num
-                else if is_operator s then Printf.printf "Operator %s\n" s
-                else print_endline "Non-number";
-                read_input ()
+    if is_number s then 
+        let num = int_of_string s in
+        read_reverse_polish_notation (num :: stack)
+    else if is_operator s then match s with 
+                | "*" -> 
+                        print_endline "Multiplication";
+                        read_reverse_polish_notation stack
+                | "+" -> 
+                        print_endline "Addition";
+                        read_reverse_polish_notation stack
+
+                | "-" -> 
+                        print_endline "Subtraction";
+                        read_reverse_polish_notation stack
+
+                | "/" -> 
+                        print_endline "Division";
+                        read_reverse_polish_notation stack
+
+                | "=" -> 
+                        print_endline "Get Result";
+                        ()
+                |  _ -> ();
+    read_reverse_polish_notation stack;;
 
 let () = 
-    read_input ()
+    read_reverse_polish_notation []
 
