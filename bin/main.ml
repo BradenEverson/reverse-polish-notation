@@ -22,26 +22,26 @@ let is_operator str =
 let rec read_reverse_polish_notation stack = 
     let s = read_line () in 
     if is_number s then 
-        let num = int_of_string s in
+        let num = float_of_string s in
         read_reverse_polish_notation (num :: stack)
-    else if is_operator s then match s with 
-                | "*" -> 
-                        print_endline "Multiplication";
-                        read_reverse_polish_notation stack
-                | "+" -> 
-                        print_endline "Addition";
-                        read_reverse_polish_notation stack
+    else if is_operator s then match s, stack with 
+                | "*", x :: y :: rest -> 
+                        let prod = x *. y in
+                        read_reverse_polish_notation (prod :: rest)
+                | "+", x :: y ::rest -> 
+                        let sum = x +. y in
+                        read_reverse_polish_notation (sum :: rest)
 
-                | "-" -> 
-                        print_endline "Subtraction";
-                        read_reverse_polish_notation stack
+                | "-", x :: y :: rest -> 
+                        let diff = y -. x in 
+                        read_reverse_polish_notation (diff :: rest)
 
-                | "/" -> 
-                        print_endline "Division";
-                        read_reverse_polish_notation stack
+                | "/", x :: y :: rest -> 
+                        let quot = y /. x in
+                        read_reverse_polish_notation (quot :: rest)
 
-                | "=" -> 
-                        print_endline "Get Result";
+                | "=", x :: _ -> 
+                        Printf.printf "Result: %.2f\n" x;
                         ()
                 |  _ -> ();
     else read_reverse_polish_notation stack
