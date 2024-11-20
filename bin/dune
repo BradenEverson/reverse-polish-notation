@@ -1,0 +1,4 @@
+(executable
+ (public_name reverse_polish_notation)
+ (name main)
+ (libraries reverse_polish_notation))
