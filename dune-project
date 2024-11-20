@@ -7,9 +7,9 @@
 (source
  (github username/reponame))
 
-(authors "Author Name")
+(authors "Braden Everson")
 
-(maintainers "Maintainer Name")
+(maintainers "Braden Everson")
 
 (license LICENSE)
 
@@ -17,10 +17,8 @@
 
 (package
  (name reverse_polish_notation)
- (synopsis "A short synopsis")
- (description "A longer description")
+ (synopsis "A simple RPN calculator to learn OCaml more")
+ (description "A simple RPN interpretter that reads input until '=' has been entered")
  (depends ocaml dune)
- (tags
-  (topics "to describe" your project)))
-
+)
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/reference/dune-project/index.html
