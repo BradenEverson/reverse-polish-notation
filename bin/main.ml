@@ -44,7 +44,7 @@ let rec read_reverse_polish_notation stack =
                         read_reverse_polish_notation (quot :: rest)
 
                 | "=", x :: _ -> 
-                        Printf.printf "Result: %.2f\n" x;
+                        Printf.printf "Result: %.2g\n" x;
                         ()
                 |  _ -> ();
     else read_reverse_polish_notation stack
