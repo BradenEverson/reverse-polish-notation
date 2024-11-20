@@ -44,7 +44,7 @@ let rec read_reverse_polish_notation stack =
                         print_endline "Get Result";
                         ()
                 |  _ -> ();
-    read_reverse_polish_notation stack;;
+    else read_reverse_polish_notation stack
 
 let () = 
     read_reverse_polish_notation []
